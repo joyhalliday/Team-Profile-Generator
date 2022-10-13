@@ -1,5 +1,31 @@
-const inquirer = require(`inquirer`);
+
+//import inquirer from 'inquirer';
 const fs = require('fs');
+const inquirer = require('inquirer');
+//import { Employee } from './employee';
+
+const managerQuestions = [
+    {
+        type: 'input',
+        name: 'managerName',
+        message: 'enter manager name',
+    },
+    {
+        type: 'input',
+        name: 'managerId',
+        message: 'enter manager id',
+    },
+    {
+        type: 'input',
+        name: 'managerEmail',
+        message: 'enter manager email',
+    }, 
+    {
+        type: 'input',
+        name: 'office',
+        message: 'enter office number',
+    }, 
+]
 
 const employeeQuestions = [
     {
@@ -20,31 +46,27 @@ const employeeQuestions = [
 ];
 
 function init() {
-    inquirer.prompt(employeeQuestions)
+    inquirer.prompt(managerQuestions)
     .then((data) => {
         console.log(data);
+    buildTeam()   
     });
 };
     
+function buildTeam() {
+    inquirer.prompt(
+        {
+            type: 'list',
+            name: 'team',
+            message: 'Would you like to add to your team?',
+            choices: ['engineer', 'intern', 'none'],
+        }
+    )
+    .then((data) => {
+        console.log(data.team);
+    })
+}
 
 
-class Employee {
-    constructor(name, id, email) {
-        employeeQuestions.name = name;
-        employeeQuestions.id = id;
-        employeeQuestions.email= email;
-    }    
-    getName() {
-        console.log(`The employee name is ${employeeQuestions.name}.`)
-    };   
-
-    getId() {
-        console.log(`The employee id is ${employeeQuestions.id}`)
-    };
-
-    getEmail() {
-        console.log(`The employee email is ${employeeQuestions.email}.`)
-    };
-    }
 
     init()
