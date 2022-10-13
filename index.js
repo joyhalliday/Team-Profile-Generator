@@ -1,5 +1,5 @@
 
-//import inquirer from 'inquirer';
+
 const fs = require('fs');
 const inquirer = require('inquirer');
 //import { Employee } from './employee';
@@ -91,20 +91,25 @@ function buildTeam() {
         }
     )
     .then((data) => {
-        console.log(data.team);
-        if (data.team === 'none') {
-            console.log(`The team is complete`);
-            return true;
-        } else {
-            buildTeam();
-            return false;
+        if (data.team === 'engineer') {
+        addEngineer();
+        } else if (data.team === 'intern') {
+        {
+            addIntern();
         }
-    })
-}
+    } else if (data.team === 'none') {
+        {
+            console.log(`The team is complete.`)
+        }    
+    };    
+    });
+};
 
 function addEngineer() {
-    inquirer.prompt(engineerQuestions)
+    inquirer.prompt(engineerQuestions);
 };
+
+
 
 function addIntern() {
     inquirer.prompt(internQuestions)
