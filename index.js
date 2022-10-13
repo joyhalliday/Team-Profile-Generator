@@ -27,21 +27,49 @@ const managerQuestions = [
     }, 
 ]
 
-const employeeQuestions = [
+const engineerQuestions = [
     {
         type: 'input',
-        name: 'name',
-        message: 'enter employee name',
+        name: 'engineerName',
+        message: 'enter engineer name',
     },
     {
         type: 'input',
-        name: 'id',
-        message: 'enter employee id',
+        name: 'engineerId',
+        message: 'enter engineer id',
     },
     {
         type: 'input',
-        name: 'email',
-        message: 'enter employee email',
+        name: 'engineerEmail',
+        message: 'enter engineer email',
+    },
+    {
+        type: 'input',
+        name: 'github',
+        message: 'enter engineer github username',
+    },
+];
+
+const internQuestions = [
+    {
+        type: 'input',
+        name: 'internName',
+        message: 'enter intern name',
+    },
+    {
+        type: 'input',
+        name: 'internId',
+        message: 'enter intern id',
+    },
+    {
+        type: 'input',
+        name: 'internEmail',
+        message: 'enter intern email',
+    },
+    {
+        type: 'input',
+        name: 'internSchool',
+        message: 'enter intern school name',
     },
 ];
 
@@ -64,9 +92,22 @@ function buildTeam() {
     )
     .then((data) => {
         console.log(data.team);
+        if (data.team === 'none') {
+            console.log(`The team is complete`);
+            return true;
+        } else {
+            buildTeam();
+            return false;
+        }
     })
 }
 
+function addEngineer() {
+    inquirer.prompt(engineerQuestions)
+};
 
+function addIntern() {
+    inquirer.prompt(internQuestions)
+}
 
     init()
